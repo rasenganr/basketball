@@ -1,5 +1,19 @@
 #include "query_funcs.h"
 
+void setupTables(connection * C) {
+  string sql_create_player =
+      "DROP TABLE IF EXISTS PLAYER;"
+      "CREATE TABLE PLAYER (PLAYER_ID INT NOT NULL, TEAM_ID INT NOT NULL, "
+      "UNIFORM_NUM INT NOT NULL, FIRST_NAME VARCHAR(15) NOT NULL, LAST_NAME VARCHAR(15) "
+      "NOT NULL, MPG "
+      "FLOAT, PPG FLOAT, RPG FLOAT, APG FLOAT, SPG FLOAT, BPG FLOAT, PRIMARY "
+      "KEY(PLAYER_ID));";
+  work W(*C);
+  W.exec(sql_create_player);
+  W.commit();
+  cout << "PLAYER created" << endl;
+}
+
 void add_player(connection * C,
                 int team_id,
                 int jersey_num,
