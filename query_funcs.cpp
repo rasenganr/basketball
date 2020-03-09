@@ -1,5 +1,7 @@
 #include "query_funcs.h"
 
+#include <string.h>
+
 #include <fstream>
 #include <iomanip>
 
@@ -126,23 +128,39 @@ string getBetween(int use, T min, T max, string str) {
   return res;
 }
 
+// ------------------------------
+// Convert a string to upper case
+// ------------------------------
+//char *
+
 // -----------------------------
 // Execute SQL and print results
 // -----------------------------
 void print(connection * C, string sql) {
   work W(*C);
   result res = W.exec(sql);
+
+  // Print attribute names
+  for (size_t i = 0; i < res.columns(); ++i) {
+    cout << res.column_name(i) << " ";
+  }
+  cout << endl;
+
+  // Print attribute values of each tuple
   for (pqxx::result::iterator i = res.begin(); i != res.end(); ++i) {
     int ind = 0;
     for (pqxx::tuple::iterator j = i->begin(); j < i->end(); ++j) {
+      // Normal data
       if (ind < 10) {
         cout << j << " ";
       }
+      // Double type data, precision = 1
       else {
         cout << fixed << setprecision(1) << j->as<double>() << " ";
       }
       ++ind;
     }
+
     cout << endl;
   }
 }
@@ -182,8 +200,6 @@ void query1(connection * C,
   }
   sql += ";";
 
-  cout << "PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG"
-       << endl;
   print(C, sql);
 }
 
@@ -196,7 +212,6 @@ void query2(connection * C, string team_color) {
                "AND COLOR.NAME = \'" +
                team_color + "\';";
 
-  cout << "TEAM.NAME" << endl;
   print(C, sql);
 }
 
@@ -210,7 +225,6 @@ void query3(connection * C, string team_name) {
                "TEAM.TEAM_ID AND TEAM.NAME = \'" +
                team_name + "\' ORDER BY PLAYER.PPG DESC;";
 
-  cout << "FIRST_NAME LAST_NAME" << endl;
   print(C, sql);
 }
 
@@ -228,7 +242,6 @@ void query4(connection * C, string team_state, string team_color) {
                "COLOR.COLOR_ID AND STATE.NAME = \'" +
                team_state + "\' AND COLOR.NAME = \'" + team_color + "\';";
 
-  cout << "FIRST_NAME LAST_NAME UNIFORM_NUM" << endl;
   print(C, sql);
 }
 
@@ -243,7 +256,7 @@ void query5(connection * C, int num_wins) {
                "PLAYER.TEAM_ID = TEAM.TEAM_ID AND WINS > " +
                to_string(num_wins) + ";";
 
-  cout << "FIRST_NAME LAST_NAME TEAM.NAME WINS" << endl;
+  //cout << "FIRST_NAME LAST_NAME NAME WINS" << endl;
   print(C, sql);
 }
 
