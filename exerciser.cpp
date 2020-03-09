@@ -39,4 +39,12 @@ void exercise(connection * C) {
   }
 
   query1(C, 0, 0, 0, 1, 0, 3, 1, 0, 3, 0, 0, 0, 1, 0.5, 1.5, 0, 0, 0);
+  cout << endl << endl;
+  query2(C, "LightBlue");
+  cout << endl << endl;
+  query3(C, "Duke");
+  cout << endl << endl;
+  query4(C, "NC", "DarkBlue");
+  cout << endl << endl;
+  query5(C, 10);
 }

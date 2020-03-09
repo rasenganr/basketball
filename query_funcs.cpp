@@ -1,33 +1,46 @@
 #include "query_funcs.h"
 
 #include <fstream>
+#include <iomanip>
+
+// -------------------------------------------
+// Drop previous database and create a new one
+// -------------------------------------------
+void setupDatabase() {
+  string sql = "DROP DATABASE IF EXISTS \"ACC_BBALL\"; CREATE DATABASE \"ACC_BBALL\";";
+}
 
 // -------------------------------------------
 // Drop previous relations and create new ones
 // -------------------------------------------
 void setupTables(connection * C) {
-  string sql =
-      "DROP TABLE IF EXISTS PLAYER CASCADE;"
-      "CREATE TABLE PLAYER (PLAYER_ID INT NOT NULL, TEAM_ID INT NOT NULL, "
-      "UNIFORM_NUM INT NOT NULL, FIRST_NAME VARCHAR(30) NOT NULL, LAST_NAME VARCHAR(30) "
-      "NOT NULL, MPG "
-      "INT, PPG INT, RPG INT, APG INT, SPG FLOAT, BPG FLOAT, PRIMARY "
-      "KEY(PLAYER_ID), FOREIGN KEY(TEAM_ID) REFERENCES TEAM(TEAM_ID) ON DELETE CASCADE);"
-      "DROP TABLE IF EXISTS TEAM CASCADE; CREATE TABLE TEAM (TEAM_ID INT NOT NULL, NAME "
-      "VARCHAR(30) NOT NULL, STATE_ID INT NOT NULL, COLOR_ID INT NOT NULL, WINS INT NOT "
-      "NULL, LOSSES INT NOT NULL, PRIMARY KEY(TEAM_ID), FOREIGN KEY(STATE_ID) REFERENCES "
-      "STATE(STATE_ID) ON DELETE CASCADE, FOREIGN KEY(COLOR_ID) REFERENCES "
-      "COLOR(COLOR_ID) ON DELETE CASCADE);"
-      "DROP TABLE IF EXISTS STATE CASCADE;"
-      "CREATE TABLE STATE (STATE_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, PRIMARY "
-      "KEY(STATE_ID));"
-      "DROP TABLE IF EXISTS COLOR CASCADE;"
-      "CREATE TABLE COLOR (COLOR_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, PRIMARY KEY "
-      "(COLOR_ID));";
+  string sql = "DROP TABLE IF EXISTS PLAYER CASCADE;"
+               "CREATE TABLE PLAYER (PLAYER_ID INT NOT NULL, TEAM_ID INT NOT NULL, "
+               "UNIFORM_NUM INT NOT NULL, FIRST_NAME VARCHAR(30) NOT NULL, LAST_NAME "
+               "VARCHAR(30) "
+               "NOT NULL, MPG "
+               "INT, PPG INT, RPG INT, APG INT, SPG FLOAT, BPG FLOAT, PRIMARY "
+               "KEY(PLAYER_ID), FOREIGN KEY(TEAM_ID) REFERENCES TEAM(TEAM_ID) ON "
+               "DELETE CASCADE);"
+               "DROP TABLE IF EXISTS TEAM CASCADE; CREATE TABLE TEAM (TEAM_ID INT NOT "
+               "NULL, NAME "
+               "VARCHAR(30) NOT NULL, STATE_ID INT NOT NULL, COLOR_ID INT NOT NULL, "
+               "WINS INT NOT "
+               "NULL, LOSSES INT NOT NULL, PRIMARY KEY(TEAM_ID), FOREIGN "
+               "KEY(STATE_ID) REFERENCES "
+               "STATE(STATE_ID) ON DELETE CASCADE, FOREIGN KEY(COLOR_ID) REFERENCES "
+               "COLOR(COLOR_ID) ON DELETE CASCADE);"
+               "DROP TABLE IF EXISTS STATE CASCADE;"
+               "CREATE TABLE STATE (STATE_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, "
+               "PRIMARY "
+               "KEY(STATE_ID));"
+               "DROP TABLE IF EXISTS COLOR CASCADE;"
+               "CREATE TABLE COLOR (COLOR_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, "
+               "PRIMARY KEY "
+               "(COLOR_ID));";
   work W(*C);
   W.exec(sql);
   W.commit();
-  cout << "Relations created" << endl;
 }
 
 // ---------------------
@@ -120,8 +133,15 @@ void print(connection * C, string sql) {
   work W(*C);
   result res = W.exec(sql);
   for (pqxx::result::iterator i = res.begin(); i != res.end(); ++i) {
+    int ind = 0;
     for (pqxx::tuple::iterator j = i->begin(); j < i->end(); ++j) {
-      cout << j << " ";
+      if (ind < 10) {
+        cout << j << " ";
+      }
+      else {
+        cout << fixed << setprecision(1) << j->as<double>() << " ";
+      }
+      ++ind;
     }
     cout << endl;
   }
@@ -162,22 +182,69 @@ void query1(connection * C,
   }
   sql += ";";
 
+  cout << "PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG"
+       << endl;
   print(C, sql);
 }
 
+// ---------------------------------------------------------------------
+// Query 2: Show the name of each team with the indicated uniform color.
+// ---------------------------------------------------------------------
 void query2(connection * C, string team_color) {
-  string sql = "SELECT TEAM.NAME FROM TEAM, COLOR WHERE TEAM.COLOR_ID = COLOR.COLOR_ID "
-               "AND COLOR.NAME = " +
-               team_color + ";";
+  string sql = "SELECT TEAM.NAME FROM TEAM, COLOR WHERE "
+               "TEAM.COLOR_ID = COLOR.COLOR_ID "
+               "AND COLOR.NAME = \'" +
+               team_color + "\';";
+
+  cout << "TEAM.NAME" << endl;
+  print(C, sql);
 }
 
+// --------------------------------------------------------------------
+// Query 3: Show the first and last name of each player that plays for
+//          the indicated team, ordered from highest to lowest ppg.
+// --------------------------------------------------------------------
 void query3(connection * C, string team_name) {
+  string sql = "SELECT FIRST_NAME, LAST_NAME FROM PLAYER, TEAM WHERE "
+               "PLAYER.TEAM_ID = "
+               "TEAM.TEAM_ID AND TEAM.NAME = \'" +
+               team_name + "\' ORDER BY PLAYER.PPG DESC;";
+
+  cout << "FIRST_NAME LAST_NAME" << endl;
+  print(C, sql);
 }
 
+// --------------------------------------------------------------------
+// Query 4: Show first name, last name and jersey number of each player
+//          that playes in the indicated state and wears the indicated
+//          uniform color.
+// --------------------------------------------------------------------
 void query4(connection * C, string team_state, string team_color) {
+  string sql = "SELECT FIRST_NAME, LAST_NAME, UNIFORM_NUM FROM PLAYER, "
+               "TEAM, STATE, "
+               "COLOR WHERE PLAYER.TEAM_ID = TEAM.TEAM_ID AND "
+               "TEAM.STATE_ID = "
+               "STATE.STATE_ID AND TEAM.COLOR_ID = "
+               "COLOR.COLOR_ID AND STATE.NAME = \'" +
+               team_state + "\' AND COLOR.NAME = \'" + team_color + "\';";
+
+  cout << "FIRST_NAME LAST_NAME UNIFORM_NUM" << endl;
+  print(C, sql);
 }
 
+// --------------------------------------------------------------------
+// Query 5: Show first name and last name of each player, and team name
+//          and number of wins for each team that has won more than the
+//          indicated number of games.
+// --------------------------------------------------------------------
 void query5(connection * C, int num_wins) {
+  string sql = "SELECT FIRST_NAME, LAST_NAME, TEAM.NAME, WINS FROM "
+               "PLAYER, TEAM WHERE "
+               "PLAYER.TEAM_ID = TEAM.TEAM_ID AND WINS > " +
+               to_string(num_wins) + ";";
+
+  cout << "FIRST_NAME LAST_NAME TEAM.NAME WINS" << endl;
+  print(C, sql);
 }
 
 // -------------------------------------------------------------------
