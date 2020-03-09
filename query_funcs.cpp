@@ -6,13 +6,6 @@
 #include <iomanip>
 
 // -------------------------------------------
-// Drop previous database and create a new one
-// -------------------------------------------
-void setupDatabase() {
-  string sql = "DROP DATABASE IF EXISTS \"ACC_BBALL\"; CREATE DATABASE \"ACC_BBALL\";";
-}
-
-// -------------------------------------------
 // Drop previous relations and create new ones
 // -------------------------------------------
 void setupTables(connection * C) {
@@ -45,94 +38,6 @@ void setupTables(connection * C) {
   W.commit();
 }
 
-// ---------------------
-// Add a tuple to PLAYER
-// ---------------------
-void add_player(connection * C,
-                int team_id,
-                int jersey_num,
-                string first_name,
-                string last_name,
-                int mpg,
-                int ppg,
-                int rpg,
-                int apg,
-                double spg,
-                double bpg) {
-  static int player_id = 1;
-  string sql = "INSERT INTO PLAYER VALUES (" + to_string(player_id) + ", " +
-               to_string(team_id) + ", " + to_string(jersey_num) + ", \'" + first_name +
-               "\', \'" + last_name + "\', " + to_string(mpg) + ", " + to_string(ppg) +
-               ", " + to_string(rpg) + ", " + to_string(apg) + ", " + to_string(spg) +
-               ", " + to_string(bpg) + ");";
-  work W(*C);
-  W.exec(sql);
-  W.commit();
-  ++player_id;
-}
-
-// -------------------
-// Add a tuple to TEAM
-// -------------------
-void add_team(connection * C,
-              string name,
-              int state_id,
-              int color_id,
-              int wins,
-              int losses) {
-  static int team_id = 1;
-  string sql = "INSERT INTO TEAM VALUES (" + to_string(team_id) + ", \'" + name + "\', " +
-               to_string(state_id) + ", " + to_string(color_id) + ", " + to_string(wins) +
-               ", " + to_string(losses) + ");";
-  work W(*C);
-  W.exec(sql);
-  W.commit();
-  ++team_id;
-}
-
-// --------------------
-// Add a tuple to STATE
-// --------------------
-void add_state(connection * C, string name) {
-  static int state_id = 1;
-  string sql =
-      "INSERT INTO STATE VALUES (" + to_string(state_id) + ", \'" + name + "\');";
-  work W(*C);
-  W.exec(sql);
-  W.commit();
-  ++state_id;
-}
-
-// --------------------
-// Add a tuple to COLOR
-// --------------------
-void add_color(connection * C, string name) {
-  static int color_id = 1;
-  string sql =
-      "INSERT INTO COLOR VALUES (" + to_string(color_id) + ", \'" + name + "\');";
-  work W(*C);
-  W.exec(sql);
-  W.commit();
-  ++color_id;
-}
-
-// --------------------------------------
-// Generate "BETWEEN" sentence for query1
-// --------------------------------------
-template<typename T>
-string getBetween(int use, T min, T max, string str) {
-  string res;
-  if (use) {
-    res = " (" + str + " BETWEEN " + to_string(min) + " AND " + to_string(max) + ") AND ";
-  }
-  return res;
-}
-
-// ------------------------------
-// Convert a string to upper case
-// ------------------------------
-//char *
-
 // -----------------------------
 // Execute SQL and print results
 // -----------------------------
@@ -163,101 +68,6 @@ void print(connection * C, string sql) {
 
     cout << endl;
   }
-}
-
-// ----------------------------------------------------------------------------
-// Query 1: Show all attributes of each player with average statistics that
-//          fall between the min and max (inclusive) for each enabled statistic
-// ----------------------------------------------------------------------------
-void query1(connection * C,
-            int use_mpg,
-            int min_mpg,
-            int max_mpg,
-            int use_ppg,
-            int min_ppg,
-            int max_ppg,
-            int use_rpg,
-            int min_rpg,
-            int max_rpg,
-            int use_apg,
-            int min_apg,
-            int max_apg,
-            int use_spg,
-            double min_spg,
-            double max_spg,
-            int use_bpg,
-            double min_bpg,
-            double max_bpg) {
-  string sql = "SELECT * FROM PLAYER WHERE";
-  sql += getBetween<int>(use_mpg, min_mpg, max_mpg, "MPG");
-  sql += getBetween<int>(use_ppg, min_ppg, max_ppg, "PPG");
-  sql += getBetween<int>(use_rpg, min_rpg, max_rpg, "RPG");
-  sql += getBetween<int>(use_apg, min_apg, max_apg, "APG");
-  sql += getBetween<double>(use_spg, min_spg, max_spg, "SPG");
-  sql += getBetween<double>(use_bpg, min_bpg, max_bpg, "BPG");
-  if (use_mpg || use_ppg || use_rpg || use_apg || use_spg || use_bpg) {
-    sql.erase(sql.length() - 5, 5);
-  }
-  sql += ";";
-
-  print(C, sql);
-}
-
-// ---------------------------------------------------------------------
-// Query 2: Show the name of each team with the indicated uniform color.
-// ---------------------------------------------------------------------
-void query2(connection * C, string team_color) {
-  string sql = "SELECT TEAM.NAME FROM TEAM, COLOR WHERE "
-               "TEAM.COLOR_ID = COLOR.COLOR_ID "
-               "AND COLOR.NAME = \'" +
-               team_color + "\';";
-
-  print(C, sql);
-}
-
-// --------------------------------------------------------------------
-// Query 3: Show the first and last name of each player that plays for
-//          the indicated team, ordered from highest to lowest ppg.
-// --------------------------------------------------------------------
-void query3(connection * C, string team_name) {
-  string sql = "SELECT FIRST_NAME, LAST_NAME FROM PLAYER, TEAM WHERE "
-               "PLAYER.TEAM_ID = "
-               "TEAM.TEAM_ID AND TEAM.NAME = \'" +
-               team_name + "\' ORDER BY PLAYER.PPG DESC;";
-
-  print(C, sql);
-}
-
-// --------------------------------------------------------------------
-// Query 4: Show first name, last name and jersey number of each player
-//          that playes in the indicated state and wears the indicated
-//          uniform color.
-// --------------------------------------------------------------------
-void query4(connection * C, string team_state, string team_color) {
-  string sql = "SELECT FIRST_NAME, LAST_NAME, UNIFORM_NUM FROM PLAYER, "
-               "TEAM, STATE, "
-               "COLOR WHERE PLAYER.TEAM_ID = TEAM.TEAM_ID AND "
-               "TEAM.STATE_ID = "
-               "STATE.STATE_ID AND TEAM.COLOR_ID = "
-               "COLOR.COLOR_ID AND STATE.NAME = \'" +
-               team_state + "\' AND COLOR.NAME = \'" + team_color + "\';";
-
-  print(C, sql);
-}
-
-// --------------------------------------------------------------------
-// Query 5: Show first name and last name of each player, and team name
-//          and number of wins for each team that has won more than the
-//          indicated number of games.
-// --------------------------------------------------------------------
-void query5(connection * C, int num_wins) {
-  string sql = "SELECT FIRST_NAME, LAST_NAME, TEAM.NAME, WINS FROM "
-               "PLAYER, TEAM WHERE "
-               "PLAYER.TEAM_ID = TEAM.TEAM_ID AND WINS > " +
-               to_string(num_wins) + ";";
-
-  //cout << "FIRST_NAME LAST_NAME NAME WINS" << endl;
-  print(C, sql);
 }
 
 // -------------------------------------------------------------------
@@ -411,4 +221,170 @@ vector<Color> TupleReader::readColors(string path) {
     res.push_back(p);
   }
   return res;
+}
+
+// ---------------------
+// Add a tuple to PLAYER
+// ---------------------
+void add_player(connection * C,
+                int team_id,
+                int jersey_num,
+                string first_name,
+                string last_name,
+                int mpg,
+                int ppg,
+                int rpg,
+                int apg,
+                double spg,
+                double bpg) {
+  static int player_id = 1;
+  string sql = "INSERT INTO PLAYER VALUES (" + to_string(player_id) + ", " +
+               to_string(team_id) + ", " + to_string(jersey_num) + ", \'" + first_name +
+               "\', \'" + last_name + "\', " + to_string(mpg) + ", " + to_string(ppg) +
+               ", " + to_string(rpg) + ", " + to_string(apg) + ", " + to_string(spg) +
+               ", " + to_string(bpg) + ");";
+  work W(*C);
+  W.exec(sql);
+  W.commit();
+  ++player_id;
+}
+
+// -------------------
+// Add a tuple to TEAM
+// -------------------
+void add_team(connection * C,
+              string name,
+              int state_id,
+              int color_id,
+              int wins,
+              int losses) {
+  static int team_id = 1;
+  string sql = "INSERT INTO TEAM VALUES (" + to_string(team_id) + ", \'" + name + "\', " +
+               to_string(state_id) + ", " + to_string(color_id) + ", " + to_string(wins) +
+               ", " + to_string(losses) + ");";
+  work W(*C);
+  W.exec(sql);
+  W.commit();
+  ++team_id;
+}
+
+// --------------------
+// Add a tuple to STATE
+// --------------------
+void add_state(connection * C, string name) {
+  static int state_id = 1;
+  string sql =
+      "INSERT INTO STATE VALUES (" + to_string(state_id) + ", \'" + name + "\');";
+  work W(*C);
+  W.exec(sql);
+  W.commit();
+  ++state_id;
+}
+
+// --------------------
+// Add a tuple to COLOR
+// --------------------
+void add_color(connection * C, string name) {
+  static int color_id = 1;
+  string sql =
+      "INSERT INTO COLOR VALUES (" + to_string(color_id) + ", \'" + name + "\');";
+  work W(*C);
+  W.exec(sql);
+  W.commit();
+  ++color_id;
+}
+
+// ----------------------------------------------------------------------------
+// Query 1: Show all attributes of each player with average statistics that
+//          fall between the min and max (inclusive) for each enabled statistic
+// ----------------------------------------------------------------------------
+void query1(connection * C,
+            int use_mpg,
+            int min_mpg,
+            int max_mpg,
+            int use_ppg,
+            int min_ppg,
+            int max_ppg,
+            int use_rpg,
+            int min_rpg,
+            int max_rpg,
+            int use_apg,
+            int min_apg,
+            int max_apg,
+            int use_spg,
+            double min_spg,
+            double max_spg,
+            int use_bpg,
+            double min_bpg,
+            double max_bpg) {
+  string sql = "SELECT * FROM PLAYER WHERE";
+  sql += getBetween<int>(use_mpg, min_mpg, max_mpg, "MPG");
+  sql += getBetween<int>(use_ppg, min_ppg, max_ppg, "PPG");
+  sql += getBetween<int>(use_rpg, min_rpg, max_rpg, "RPG");
+  sql += getBetween<int>(use_apg, min_apg, max_apg, "APG");
+  sql += getBetween<double>(use_spg, min_spg, max_spg, "SPG");
+  sql += getBetween<double>(use_bpg, min_bpg, max_bpg, "BPG");
+  if (use_mpg || use_ppg || use_rpg || use_apg || use_spg || use_bpg) {
+    sql.erase(sql.length() - 5, 5);
+  }
+  sql += ";";
+
+  print(C, sql);
+}
+
+// ---------------------------------------------------------------------
+// Query 2: Show the name of each team with the indicated uniform color.
+// ---------------------------------------------------------------------
+void query2(connection * C, string team_color) {
+  string sql = "SELECT TEAM.NAME FROM TEAM, COLOR WHERE "
+               "TEAM.COLOR_ID = COLOR.COLOR_ID "
+               "AND COLOR.NAME = \'" +
+               team_color + "\';";
+
+  print(C, sql);
+}
+
+// --------------------------------------------------------------------
+// Query 3: Show the first and last name of each player that plays for
+//          the indicated team, ordered from highest to lowest ppg.
+// --------------------------------------------------------------------
+void query3(connection * C, string team_name) {
+  string sql = "SELECT FIRST_NAME, LAST_NAME FROM PLAYER, TEAM WHERE "
+               "PLAYER.TEAM_ID = "
+               "TEAM.TEAM_ID AND TEAM.NAME = \'" +
+               team_name + "\' ORDER BY PLAYER.PPG DESC;";
+
+  print(C, sql);
+}
+
+// --------------------------------------------------------------------
+// Query 4: Show first name, last name and jersey number of each player
+//          that playes in the indicated state and wears the indicated
+//          uniform color.
+// --------------------------------------------------------------------
+void query4(connection * C, string team_state, string team_color) {
+  string sql = "SELECT FIRST_NAME, LAST_NAME, UNIFORM_NUM FROM PLAYER, "
+               "TEAM, STATE, "
+               "COLOR WHERE PLAYER.TEAM_ID = TEAM.TEAM_ID AND "
+               "TEAM.STATE_ID = "
+               "STATE.STATE_ID AND TEAM.COLOR_ID = "
+               "COLOR.COLOR_ID AND STATE.NAME = \'" +
+               team_state + "\' AND COLOR.NAME = \'" + team_color + "\';";
+
+  print(C, sql);
+}
+
+// --------------------------------------------------------------------
+// Query 5: Show first name and last name of each player, and team name
+//          and number of wins for each team that has won more than the
+//          indicated number of games.
+// --------------------------------------------------------------------
+void query5(connection * C, int num_wins) {
+  string sql = "SELECT FIRST_NAME, LAST_NAME, TEAM.NAME, WINS FROM "
+               "PLAYER, TEAM WHERE "
+               "PLAYER.TEAM_ID = TEAM.TEAM_ID AND WINS > " +
+               to_string(num_wins) + ";";
+
+  //cout << "FIRST_NAME LAST_NAME NAME WINS" << endl;
+  print(C, sql);
 }

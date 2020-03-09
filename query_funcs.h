@@ -66,6 +66,24 @@ class TupleReader {
   vector<Color> readColors(string path);
 };
 
+void setupTables(connection * C);
+
+// --------------------------------------
+// Generate "BETWEEN" sentence for query1
+// --------------------------------------
+template<typename T>
+string getBetween(int use, T min, T max, string str) {
+  string res;
+  if (use) {
+    res = " (" + str + " BETWEEN " + to_string(min) + " AND " + to_string(max) + ") AND ";
+  }
+  return res;
+}
+
+void print(connection * C, string sql);
+
+void addQuotation(vector<string> & vec);
+
 vector<string> split(string str);
 
 Player splitPlayer(string str);
@@ -75,8 +93,6 @@ Team splitTeam(string str);
 State splitState(string str);
 
 Color splitColor(string str);
-
-void setupTables(connection * C);
 
 void add_player(connection * C,
                 int team_id,
