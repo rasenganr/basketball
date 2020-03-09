@@ -1,12 +1,80 @@
 #include <iostream>
 #include <pqxx/pqxx>
 #include <string>
+#include <vector>
 
 using namespace std;
 using namespace pqxx;
 
 #ifndef _QUERY_FUNCS_
 #define _QUERY_FUNCS_
+
+// -----------------
+// Player tuple info
+// -----------------
+class Player {
+ public:
+  int player_id;
+  int team_id;
+  int uniform_num;
+  string first_name;
+  string last_name;
+  int mpg;
+  int ppg;
+  int rpg;
+  int apg;
+  float spg;
+  float bpg;
+};
+
+// ---------------
+// Team tuple info
+// ---------------
+class Team {
+ public:
+  int team_id;
+  string name;
+  int state_id;
+  int color_id;
+  int wins;
+  int losses;
+};
+
+// ----------------
+// State tuple info
+// ----------------
+class State {
+ public:
+  int state_id;
+  string name;
+};
+
+// ----------------
+// Color tuple info
+// ----------------
+class Color {
+ public:
+  int color_id;
+  string name;
+};
+
+class TupleReader {
+ public:
+  vector<Player> readPlayers(string path);
+  vector<Team> readTeams(string path);
+  vector<State> readStates(string path);
+  vector<Color> readColors(string path);
+};
+
+vector<string> split(string str);
+
+Player splitPlayer(string str);
+
+Team splitTeam(string str);
+
+State splitState(string str);
+
+Color splitColor(string str);
 
 void setupTables(connection * C);
 
