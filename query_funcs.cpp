@@ -9,14 +9,14 @@
 // Drop previous relations and create new ones
 // -------------------------------------------
 void setupTables(connection * C) {
-  string sql = "DROP TABLE IF EXISTS PLAYER CASCADE;"
-               "CREATE TABLE PLAYER (PLAYER_ID INT NOT NULL, TEAM_ID INT NOT NULL, "
-               "UNIFORM_NUM INT NOT NULL, FIRST_NAME VARCHAR(30) NOT NULL, LAST_NAME "
-               "VARCHAR(30) "
-               "NOT NULL, MPG "
-               "INT, PPG INT, RPG INT, APG INT, SPG FLOAT, BPG FLOAT, PRIMARY "
-               "KEY(PLAYER_ID), FOREIGN KEY(TEAM_ID) REFERENCES TEAM(TEAM_ID) ON "
-               "DELETE CASCADE);"
+  string sql = "DROP TABLE IF EXISTS STATE CASCADE;"
+               "CREATE TABLE STATE (STATE_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, "
+               "PRIMARY "
+               "KEY(STATE_ID));"
+               "DROP TABLE IF EXISTS COLOR CASCADE;"
+               "CREATE TABLE COLOR (COLOR_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, "
+               "PRIMARY KEY "
+               "(COLOR_ID));"
                "DROP TABLE IF EXISTS TEAM CASCADE; CREATE TABLE TEAM (TEAM_ID INT NOT "
                "NULL, NAME "
                "VARCHAR(30) NOT NULL, STATE_ID INT NOT NULL, COLOR_ID INT NOT NULL, "
@@ -25,14 +25,14 @@ void setupTables(connection * C) {
                "KEY(STATE_ID) REFERENCES "
                "STATE(STATE_ID) ON DELETE CASCADE, FOREIGN KEY(COLOR_ID) REFERENCES "
                "COLOR(COLOR_ID) ON DELETE CASCADE);"
-               "DROP TABLE IF EXISTS STATE CASCADE;"
-               "CREATE TABLE STATE (STATE_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, "
-               "PRIMARY "
-               "KEY(STATE_ID));"
-               "DROP TABLE IF EXISTS COLOR CASCADE;"
-               "CREATE TABLE COLOR (COLOR_ID INT NOT NULL, NAME VARCHAR(30) NOT NULL, "
-               "PRIMARY KEY "
-               "(COLOR_ID));";
+               "DROP TABLE IF EXISTS PLAYER CASCADE;"
+               "CREATE TABLE PLAYER (PLAYER_ID INT NOT NULL, TEAM_ID INT NOT NULL, "
+               "UNIFORM_NUM INT NOT NULL, FIRST_NAME VARCHAR(30) NOT NULL, LAST_NAME "
+               "VARCHAR(30) "
+               "NOT NULL, MPG "
+               "INT, PPG INT, RPG INT, APG INT, SPG FLOAT, BPG FLOAT, PRIMARY "
+               "KEY(PLAYER_ID), FOREIGN KEY(TEAM_ID) REFERENCES TEAM(TEAM_ID) ON "
+               "DELETE CASCADE);";
   work W(*C);
   W.exec(sql);
   W.commit();

@@ -7,6 +7,26 @@ void exercise(connection * C) {
   vector<State> states = tr.readStates("state.txt");
   vector<Color> colors = tr.readColors("color.txt");
 
+  // Add state tuples
+  for (size_t i = 0; i < states.size(); ++i) {
+    add_state(C, states[i].name);
+  }
+
+  // Add color tuples
+  for (size_t i = 0; i < colors.size(); ++i) {
+    add_color(C, colors[i].name);
+  }
+
+  // Add team tuples
+  for (size_t i = 0; i < teams.size(); ++i) {
+    add_team(C,
+             teams[i].name,
+             teams[i].state_id,
+             teams[i].color_id,
+             teams[i].wins,
+             teams[i].losses);
+  }
+
   // Add player tuples
   for (size_t i = 0; i < players.size(); ++i) {
     add_player(C,
@@ -20,26 +40,6 @@ void exercise(connection * C) {
                players[i].apg,
                players[i].spg,
                players[i].bpg);
-  }
-
-  // Add team tuples
-  for (size_t i = 0; i < teams.size(); ++i) {
-    add_team(C,
-             teams[i].name,
-             teams[i].state_id,
-             teams[i].color_id,
-             teams[i].wins,
-             teams[i].losses);
-  }
-
-  // Add state tuples
-  for (size_t i = 0; i < states.size(); ++i) {
-    add_state(C, states[i].name);
-  }
-
-  // Add color tuples
-  for (size_t i = 0; i < colors.size(); ++i) {
-    add_color(C, colors[i].name);
   }
 
   // Test query 1
