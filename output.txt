@@ -1,0 +1,698 @@
+Opened database successfully: ACC_BBALL
+------------------------------------------------------------------
+----------------------------- Query 1 ----------------------------
+------------------------------------------------------------------
+player_id team_id uniform_num first_name last_name mpg ppg rpg apg spg bpg 
+51 4 3 Trent Forrest 15 5 3 2 1.2 0.1 
+52 4 2 CJ Walker 13 5 1 1 0.6 0.1 
+53 4 11 Braian Angola 12 5 2 1 0.4 0.1 
+54 4 23 Jarquez Smith 13 4 3 1 0.2 0.9 
+63 5 0 Justin Moore 19 4 2 2 0.4 0.1 
+65 5 30 Corey Heyward 17 2 2 1 0.5 0.1 
+68 5 34 Abdoulaye Gueye 10 1 3 1 0.2 0.6 
+80 6 0 V.J. King 14 6 2 1 0.2 0.1 
+105 8 11 Markell Johnson 20 4 2 2 0.9 0.3 
+120 9 0 Nate Britt 19 5 2 2 1 0.1 
+132 10 2 TJ Gibbs 15 5 2 2 0.7 0.1 
+134 10 23 Martinas Geben 12 3 3 1 0.4 0.3 
+148 11 5 Justice Kithcart 13 1 1 1 0.3 0.1 
+177 13 11 Ty Jerome 14 4 2 2 0.4 0.1 
+178 13 31 Jarred Reuter 11 4 2 1 0.2 0.1 
+
+
+player_id team_id uniform_num first_name last_name mpg ppg rpg apg spg bpg 
+3 1 25 Jordan Chatman 25 9 2 1 0.6 0.2 
+7 1 15 Mo Jeffers 20 6 6 1 0.4 0.5 
+33 3 15 Frank Jackson 25 11 3 2 0.6 0.1 
+75 6 22 Deng Adel 30 12 5 2 0.6 0.4 
+76 6 10 Jaylen Johnson 21 8 6 1 0.5 0.5 
+77 6 12 Mangok Mathiang 21 8 6 1 0.5 1.1 
+90 7 21 Kamari Murphy 29 7 7 1 0.4 0.7 
+100 8 24 Maverick Rowan 30 12 4 1 0.6 0.2 
+101 8 0 Abdul-Malik Abu 29 12 7 1 0.4 0.9 
+102 8 2 Torin Dorn 24 10 5 1 0.4 0.1 
+115 9 4 Isaiah Hicks 23 12 6 1 0.4 0.7 
+159 12 21 Tyler Roberson 20 5 5 1 0.5 0.8 
+173 13 0 Devon Hall 27 8 4 2 0.5 0.1 
+184 14 32 Zach LeDay 29 17 7 1 0.6 1.0 
+187 14 13 Ahmed Hill 30 11 3 1 0.2 0.2 
+195 15 20 John Collins 27 19 10 1 0.6 1.6 
+198 15 44 Konstantinos Mitoglou 25 9 6 1 0.6 0.7 
+199 15 34 Austin Arians 23 9 2 1 0.5 0.1 
+
+
+player_id team_id uniform_num first_name last_name mpg ppg rpg apg spg bpg 
+51 4 3 Trent Forrest 15 5 3 2 1.2 0.1 
+62 5 11 Josh Heath 31 5 3 4 1.2 0.2 
+131 10 0 Rex Pflueger 21 5 3 2 0.9 0.3 
+
+
+------------------------------------------------------------------
+----------------------------- Query 2 ----------------------------
+------------------------------------------------------------------
+name 
+UNC 
+
+
+name 
+Clemson 
+Syracuse 
+Virginia 
+
+
+name 
+Miami 
+
+
+name 
+Louisville 
+NCSU 
+
+
+name 
+Duke 
+
+
+name 
+GeorgiaTech 
+NotreDame 
+WakeForest 
+
+
+name 
+BostonCollege 
+FloridaState 
+VirginiaTech 
+
+
+name 
+Pittsburgh 
+
+
+------------------------------------------------------------------
+----------------------------- Query 3 ----------------------------
+------------------------------------------------------------------
+first_name last_name 
+Jerome Robinson 
+Ky Bowman 
+Jordan Chatman 
+A.J. Turner 
+Nik Popovic 
+Connar Tava 
+Mo Jeffers 
+Ty Graves 
+Mike Sagay 
+Garland Owens 
+Johncarlos Reyes 
+Ervins Meznieks 
+Gordon Gehan 
+Aser Ghebremichael 
+Matt DiLuccio 
+
+
+first_name last_name 
+Jaron Blossomgame 
+Shelton Mitchell 
+Avry Holmes 
+Marcquise Reed 
+Elijah Thomas 
+Donte Grantham 
+Gabe DeVoe 
+Sidy Djitte 
+Scott Spencer 
+Legend Robertin 
+Isaac Fields 
+Ty Hudson 
+Lyles Davis 
+Riley McGillan 
+
+
+first_name last_name 
+Luke Kennard 
+Jayson Tatum 
+Grayson Allen 
+Frank Jackson 
+Amile Jefferson 
+Matt Jones 
+Harry Giles 
+Chase Jeter 
+Antonio Vrankovic 
+Jack White 
+Javin DeLaurier 
+Marques Bolden 
+Justin Robinson 
+Nick Pagliuca 
+Brennan Besser 
+
+
+first_name last_name 
+Dwayne Bacon 
+Jonathan Isaac 
+Xavier Rathan-Mayes 
+Terance Mann 
+PJ Savoy 
+Michael Ojo 
+Trent Forrest 
+CJ Walker 
+Braian Angola 
+Jarquez Smith 
+Christ Koumadje 
+Brandon Allen 
+Phil Cofer 
+
+
+first_name last_name 
+Josh Okogie 
+Ben Lammers 
+Tadric Jackson 
+Quinton Stephens 
+Josh Heath 
+Justin Moore 
+Christian Matthews 
+Corey Heyward 
+Sylvester Ogbonda 
+Kellen McCormick 
+Abdoulaye Gueye 
+Shaheed Medlock 
+Norman Harris 
+Jodan Price 
+Rand Rowland 
+
+
+first_name last_name 
+Donovan Mitchell 
+Quentin Snider 
+Deng Adel 
+Jaylen Johnson 
+Mangok Mathiang 
+Ray Spalding 
+Anas Mahmoud 
+V.J. King 
+Tony Hicks 
+Ryan McMahon 
+David Levitch 
+Matz Stockman 
+Jay Henderson 
+Tyler Sharpe 
+
+
+first_name last_name 
+Davon Reed 
+Ja'Quan Newton 
+Bruce BrownJr. 
+Kamari Murphy 
+Anthony LawrenceII 
+Dejan Vasiljevic 
+Dewan Huell 
+Ebuka Izundu 
+Rodney MillerJr. 
+Mike Robinson 
+Chris Stowell 
+
+
+first_name last_name 
+Dennis SmithJr. 
+Terry Henderson 
+Maverick Rowan 
+Abdul-Malik Abu 
+Torin Dorn 
+Omer Yurtseven 
+Ted Kapita 
+Markell Johnson 
+BeeJay Anya 
+Shaun Kirk 
+Chris CorchianiJr. 
+Tucker Thompson 
+Darius Hicks 
+Chris Brickhouse 
+
+
+first_name last_name 
+Justin Jackson 
+Joel BerryII 
+Kennedy Meeks 
+Isaiah Hicks 
+Tony Bradley 
+Kenny Williams 
+Theo Pinson 
+Luke Maye 
+Nate Britt 
+Brandon Robinson 
+Seventh Woods 
+Stilman White 
+Shea Rush 
+Kanler Coker 
+Aaron Rohlman 
+
+
+first_name last_name 
+Bonzie Colson 
+V.J. Beachem 
+Matt Farrell 
+Steve Vasturia 
+Rex Pflueger 
+TJ Gibbs 
+Matt Ryan 
+Martinas Geben 
+Austin Torres 
+John Mooney 
+Elijah Burns 
+Patrick Mazza 
+Matt Gregory 
+
+
+first_name last_name 
+Mike Young 
+Jamel Artis 
+Cameron Johnson 
+Sheldon Jeter 
+Chris Jones 
+Ryan Luther 
+Jonathan Milligan 
+Rozelle Nix 
+Justice Kithcart 
+Ryan Seelye 
+Corey Manigault 
+Damon Wilson 
+Zach Smith 
+
+
+first_name last_name 
+Andrew WhiteIII 
+Tyler Lydon 
+Tyus Battle 
+John Gillon 
+Taurean Thompson 
+DaJuan Coleman 
+Tyler Roberson 
+Frank Howard 
+Paschal Chukwu 
+Ray Featherston 
+Doyin Akintobi-Adeyeye 
+Adrian Autry 
+Ky Feldman 
+Shaun Belbey 
+Mike Sutton 
+Evan Dourdas 
+Jonathan Radner 
+
+
+first_name last_name 
+London Perrantes 
+Austin Nichols 
+Marial Shayok 
+Devon Hall 
+Kyle Guy 
+Isaiah Wilkins 
+Darius Thompson 
+Ty Jerome 
+Jarred Reuter 
+Mamadi Diakite 
+Jack Salt 
+Justice Bartley 
+Jeff Jones 
+Trevon GrossJr. 
+
+
+first_name last_name 
+Zach LeDay 
+Seth Allen 
+Chris Clarke 
+Ahmed Hill 
+Justin Robinson 
+Justin Bibbs 
+Ty Outlaw 
+Khadim Sy 
+Johnny Hamilton 
+Matt Galloway 
+Greg Donlon 
+
+
+first_name last_name 
+John Collins 
+Bryant Crawford 
+Keyshawn Woods 
+Konstantinos Mitoglou 
+Austin Arians 
+Mitchell Wilbekin 
+Brandon Childress 
+Doral Moore 
+Greg McClinton 
+Donovan Mitchell 
+Sam Japhet-Mathias 
+Aaron Spivey 
+Troy Rike 
+Trent VanHorn 
+Rich Washington 
+Anthony Bilas 
+Britton Anderson 
+
+
+------------------------------------------------------------------
+----------------------------- Query 4 ----------------------------
+------------------------------------------------------------------
+first_name last_name uniform_num 
+Jerome Robinson 1 
+Ky Bowman 0 
+Jordan Chatman 25 
+A.J. Turner 11 
+Nik Popovic 21 
+Connar Tava 2 
+Mo Jeffers 15 
+Ty Graves 13 
+Mike Sagay 23 
+Garland Owens 5 
+Johncarlos Reyes 12 
+Ervins Meznieks 10 
+Gordon Gehan 20 
+Aser Ghebremichael 14 
+Matt DiLuccio 22 
+
+
+first_name last_name uniform_num 
+Jaron Blossomgame 5 
+Shelton Mitchell 4 
+Avry Holmes 12 
+Marcquise Reed 2 
+Elijah Thomas 14 
+Donte Grantham 15 
+Gabe DeVoe 10 
+Sidy Djitte 50 
+Scott Spencer 22 
+Legend Robertin 0 
+Isaac Fields 11 
+Ty Hudson 1 
+Lyles Davis 3 
+Riley McGillan 44 
+
+
+first_name last_name uniform_num 
+Luke Kennard 5 
+Jayson Tatum 0 
+Grayson Allen 3 
+Frank Jackson 15 
+Amile Jefferson 21 
+Matt Jones 13 
+Harry Giles 1 
+Chase Jeter 2 
+Antonio Vrankovic 30 
+Jack White 41 
+Javin DeLaurier 12 
+Marques Bolden 20 
+Justin Robinson 50 
+Nick Pagliuca 45 
+Brennan Besser 53 
+
+
+first_name last_name uniform_num 
+Dwayne Bacon 4 
+Jonathan Isaac 1 
+Xavier Rathan-Mayes 22 
+Terance Mann 14 
+PJ Savoy 5 
+Michael Ojo 50 
+Trent Forrest 3 
+CJ Walker 2 
+Braian Angola 11 
+Jarquez Smith 23 
+Christ Koumadje 21 
+Brandon Allen 40 
+Phil Cofer 0 
+
+
+first_name last_name uniform_num 
+Josh Okogie 5 
+Ben Lammers 44 
+Tadric Jackson 1 
+Quinton Stephens 12 
+Josh Heath 11 
+Justin Moore 0 
+Christian Matthews 23 
+Corey Heyward 30 
+Sylvester Ogbonda 24 
+Kellen McCormick 32 
+Abdoulaye Gueye 34 
+Shaheed Medlock 3 
+Norman Harris 13 
+Jodan Price 2 
+Rand Rowland 42 
+
+
+first_name last_name uniform_num 
+Donovan Mitchell 45 
+Quentin Snider 2 
+Deng Adel 22 
+Jaylen Johnson 10 
+Mangok Mathiang 12 
+Ray Spalding 13 
+Anas Mahmoud 14 
+V.J. King 0 
+Tony Hicks 1 
+Ryan McMahon 30 
+David Levitch 23 
+Matz Stockman 5 
+Jay Henderson 11 
+Tyler Sharpe 15 
+
+
+first_name last_name uniform_num 
+Davon Reed 5 
+Ja'Quan Newton 0 
+Bruce BrownJr. 11 
+Kamari Murphy 21 
+Anthony LawrenceII 3 
+Dejan Vasiljevic 4 
+Dewan Huell 20 
+Ebuka Izundu 15 
+Rodney MillerJr. 14 
+Mike Robinson 2 
+Chris Stowell 35 
+
+
+first_name last_name uniform_num 
+Dennis SmithJr. 4 
+Terry Henderson 3 
+Maverick Rowan 24 
+Abdul-Malik Abu 0 
+Torin Dorn 2 
+Omer Yurtseven 14 
+Ted Kapita 23 
+Markell Johnson 11 
+BeeJay Anya 21 
+Shaun Kirk 22 
+Chris CorchianiJr. 13 
+Tucker Thompson 42 
+Darius Hicks 5 
+Chris Brickhouse 15 
+
+
+first_name last_name uniform_num 
+Justin Jackson 44 
+Joel BerryII 2 
+Kennedy Meeks 3 
+Isaiah Hicks 4 
+Tony Bradley 5 
+Kenny Williams 24 
+Theo Pinson 1 
+Luke Maye 32 
+Nate Britt 0 
+Brandon Robinson 14 
+Seventh Woods 21 
+Stilman White 30 
+Shea Rush 11 
+Kanler Coker 13 
+Aaron Rohlman 25 
+
+
+first_name last_name uniform_num 
+Bonzie Colson 35 
+V.J. Beachem 3 
+Matt Farrell 5 
+Steve Vasturia 32 
+Rex Pflueger 0 
+TJ Gibbs 2 
+Matt Ryan 4 
+Martinas Geben 23 
+Austin Torres 1 
+John Mooney 33 
+Elijah Burns 12 
+Patrick Mazza 30 
+Matt Gregory 21 
+
+
+------------------------------------------------------------------
+----------------------------- Query 5 ----------------------------
+------------------------------------------------------------------
+first_name last_name name wins 
+Luke Kennard Duke 11 
+Jayson Tatum Duke 11 
+Grayson Allen Duke 11 
+Frank Jackson Duke 11 
+Amile Jefferson Duke 11 
+Matt Jones Duke 11 
+Harry Giles Duke 11 
+Chase Jeter Duke 11 
+Antonio Vrankovic Duke 11 
+Jack White Duke 11 
+Javin DeLaurier Duke 11 
+Marques Bolden Duke 11 
+Justin Robinson Duke 11 
+Nick Pagliuca Duke 11 
+Brennan Besser Duke 11 
+Dwayne Bacon FloridaState 12 
+Jonathan Isaac FloridaState 12 
+Xavier Rathan-Mayes FloridaState 12 
+Terance Mann FloridaState 12 
+PJ Savoy FloridaState 12 
+Michael Ojo FloridaState 12 
+Trent Forrest FloridaState 12 
+CJ Walker FloridaState 12 
+Braian Angola FloridaState 12 
+Jarquez Smith FloridaState 12 
+Christ Koumadje FloridaState 12 
+Brandon Allen FloridaState 12 
+Phil Cofer FloridaState 12 
+Donovan Mitchell Louisville 12 
+Quentin Snider Louisville 12 
+Deng Adel Louisville 12 
+Jaylen Johnson Louisville 12 
+Mangok Mathiang Louisville 12 
+Ray Spalding Louisville 12 
+Anas Mahmoud Louisville 12 
+V.J. King Louisville 12 
+Tony Hicks Louisville 12 
+Ryan McMahon Louisville 12 
+David Levitch Louisville 12 
+Matz Stockman Louisville 12 
+Jay Henderson Louisville 12 
+Tyler Sharpe Louisville 12 
+Justin Jackson NotreDame 12 
+Joel BerryII NotreDame 12 
+Kennedy Meeks NotreDame 12 
+Isaiah Hicks NotreDame 12 
+Tony Bradley NotreDame 12 
+Kenny Williams NotreDame 12 
+Theo Pinson NotreDame 12 
+Luke Maye NotreDame 12 
+Nate Britt NotreDame 12 
+Brandon Robinson NotreDame 12 
+Seventh Woods NotreDame 12 
+Stilman White NotreDame 12 
+Shea Rush NotreDame 12 
+Kanler Coker NotreDame 12 
+Aaron Rohlman NotreDame 12 
+Andrew WhiteIII UNC 14 
+Tyler Lydon UNC 14 
+Tyus Battle UNC 14 
+John Gillon UNC 14 
+Taurean Thompson UNC 14 
+DaJuan Coleman UNC 14 
+Tyler Roberson UNC 14 
+Frank Howard UNC 14 
+Paschal Chukwu UNC 14 
+Ray Featherston UNC 14 
+Doyin Akintobi-Adeyeye UNC 14 
+Adrian Autry UNC 14 
+Ky Feldman UNC 14 
+Shaun Belbey UNC 14 
+Mike Sutton UNC 14 
+Evan Dourdas UNC 14 
+Jonathan Radner UNC 14 
+London Perrantes Virginia 11 
+Austin Nichols Virginia 11 
+Marial Shayok Virginia 11 
+Devon Hall Virginia 11 
+Kyle Guy Virginia 11 
+Isaiah Wilkins Virginia 11 
+Darius Thompson Virginia 11 
+Ty Jerome Virginia 11 
+Jarred Reuter Virginia 11 
+Mamadi Diakite Virginia 11 
+Jack Salt Virginia 11 
+Justice Bartley Virginia 11 
+Jeff Jones Virginia 11 
+Trevon GrossJr. Virginia 11 
+
+
+first_name last_name name wins 
+Dwayne Bacon FloridaState 12 
+Jonathan Isaac FloridaState 12 
+Xavier Rathan-Mayes FloridaState 12 
+Terance Mann FloridaState 12 
+PJ Savoy FloridaState 12 
+Michael Ojo FloridaState 12 
+Trent Forrest FloridaState 12 
+CJ Walker FloridaState 12 
+Braian Angola FloridaState 12 
+Jarquez Smith FloridaState 12 
+Christ Koumadje FloridaState 12 
+Brandon Allen FloridaState 12 
+Phil Cofer FloridaState 12 
+Donovan Mitchell Louisville 12 
+Quentin Snider Louisville 12 
+Deng Adel Louisville 12 
+Jaylen Johnson Louisville 12 
+Mangok Mathiang Louisville 12 
+Ray Spalding Louisville 12 
+Anas Mahmoud Louisville 12 
+V.J. King Louisville 12 
+Tony Hicks Louisville 12 
+Ryan McMahon Louisville 12 
+David Levitch Louisville 12 
+Matz Stockman Louisville 12 
+Jay Henderson Louisville 12 
+Tyler Sharpe Louisville 12 
+Justin Jackson NotreDame 12 
+Joel BerryII NotreDame 12 
+Kennedy Meeks NotreDame 12 
+Isaiah Hicks NotreDame 12 
+Tony Bradley NotreDame 12 
+Kenny Williams NotreDame 12 
+Theo Pinson NotreDame 12 
+Luke Maye NotreDame 12 
+Nate Britt NotreDame 12 
+Brandon Robinson NotreDame 12 
+Seventh Woods NotreDame 12 
+Stilman White NotreDame 12 
+Shea Rush NotreDame 12 
+Kanler Coker NotreDame 12 
+Aaron Rohlman NotreDame 12 
+Andrew WhiteIII UNC 14 
+Tyler Lydon UNC 14 
+Tyus Battle UNC 14 
+John Gillon UNC 14 
+Taurean Thompson UNC 14 
+DaJuan Coleman UNC 14 
+Tyler Roberson UNC 14 
+Frank Howard UNC 14 
+Paschal Chukwu UNC 14 
+Ray Featherston UNC 14 
+Doyin Akintobi-Adeyeye UNC 14 
+Adrian Autry UNC 14 
+Ky Feldman UNC 14 
+Shaun Belbey UNC 14 
+Mike Sutton UNC 14 
+Evan Dourdas UNC 14 
+Jonathan Radner UNC 14 
+
+
+first_name last_name name wins 
+Andrew WhiteIII UNC 14 
+Tyler Lydon UNC 14 
+Tyus Battle UNC 14 
+John Gillon UNC 14 
+Taurean Thompson UNC 14 
+DaJuan Coleman UNC 14 
+Tyler Roberson UNC 14 
+Frank Howard UNC 14 
+Paschal Chukwu UNC 14 
+Ray Featherston UNC 14 
+Doyin Akintobi-Adeyeye UNC 14 
+Adrian Autry UNC 14 
+Ky Feldman UNC 14 
+Shaun Belbey UNC 14 
+Mike Sutton UNC 14 
+Evan Dourdas UNC 14 
+Jonathan Radner UNC 14 
+
+

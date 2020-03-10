@@ -23,8 +23,9 @@ void setupTables(connection * C) {
                "WINS INT NOT "
                "NULL, LOSSES INT NOT NULL, PRIMARY KEY(TEAM_ID), FOREIGN "
                "KEY(STATE_ID) REFERENCES "
-               "STATE(STATE_ID) ON DELETE CASCADE, FOREIGN KEY(COLOR_ID) REFERENCES "
-               "COLOR(COLOR_ID) ON DELETE CASCADE);"
+               "STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN "
+               "KEY(COLOR_ID) REFERENCES "
+               "COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);"
                "DROP TABLE IF EXISTS PLAYER CASCADE;"
                "CREATE TABLE PLAYER (PLAYER_ID INT NOT NULL, TEAM_ID INT NOT NULL, "
                "UNIFORM_NUM INT NOT NULL, FIRST_NAME VARCHAR(30) NOT NULL, LAST_NAME "
@@ -32,7 +33,7 @@ void setupTables(connection * C) {
                "NOT NULL, MPG "
                "INT, PPG INT, RPG INT, APG INT, SPG FLOAT, BPG FLOAT, PRIMARY "
                "KEY(PLAYER_ID), FOREIGN KEY(TEAM_ID) REFERENCES TEAM(TEAM_ID) ON "
-               "DELETE CASCADE);";
+               "DELETE SET NULL ON UPDATE CASCADE);";
   work W(*C);
   W.exec(sql);
   W.commit();
