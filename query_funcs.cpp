@@ -57,7 +57,7 @@ void print(connection * C, string sql) {
     int ind = 0;
     for (pqxx::tuple::iterator j = i->begin(); j < i->end(); ++j) {
       // Normal data
-      if (ind < 10) {
+      if (ind < 9) {
         cout << j << " ";
       }
       // Double type data, precision = 1
@@ -293,6 +293,52 @@ void add_color(connection * C, string name) {
   W.exec(sql);
   W.commit();
   ++color_id;
+}
+
+// ----------------------
+// Populate the relations
+// ----------------------
+void populate(connection * C) {
+  TupleReader tr;
+  vector<Player> players = tr.readPlayers("player.txt");
+  vector<Team> teams = tr.readTeams("team.txt");
+  vector<State> states = tr.readStates("state.txt");
+  vector<Color> colors = tr.readColors("color.txt");
+
+  // Add state tuples
+  for (size_t i = 0; i < states.size(); ++i) {
+    add_state(C, states[i].name);
+  }
+
+  // Add color tuples
+  for (size_t i = 0; i < colors.size(); ++i) {
+    add_color(C, colors[i].name);
+  }
+
+  // Add team tuples
+  for (size_t i = 0; i < teams.size(); ++i) {
+    add_team(C,
+             teams[i].name,
+             teams[i].state_id,
+             teams[i].color_id,
+             teams[i].wins,
+             teams[i].losses);
+  }
+
+  // Add player tuples
+  for (size_t i = 0; i < players.size(); ++i) {
+    add_player(C,
+               players[i].team_id,
+               players[i].uniform_num,
+               players[i].first_name,
+               players[i].last_name,
+               players[i].mpg,
+               players[i].ppg,
+               players[i].rpg,
+               players[i].apg,
+               players[i].spg,
+               players[i].bpg);
+  }
 }
 
 // ----------------------------------------------------------------------------

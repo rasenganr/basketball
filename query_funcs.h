@@ -117,6 +117,8 @@ void add_state(connection * C, string name);
 
 void add_color(connection * C, string name);
 
+void populate(connection * C);
+
 void query1(connection * C,
             int use_mpg,
             int min_mpg,
